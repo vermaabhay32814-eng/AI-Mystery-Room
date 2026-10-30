@@ -20,3 +20,4 @@ export const sendError = (res, message = 'An error occurred', code = 'INTERNAL_E
   }
   return res.status(statusCode).json(payload);
 };
+

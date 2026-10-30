@@ -12,3 +12,4 @@ export const AppLayout = ({ children, hideFooter = false }) => {
     </div>
   );
 };
+

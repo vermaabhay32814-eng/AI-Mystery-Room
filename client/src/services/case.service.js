@@ -8,3 +8,4 @@ export const caseService = {
   getCaseStatus: (caseId) => api.get(`/cases/${caseId}/status`),
   deleteCase: (caseId) => api.delete(`/cases/${caseId}`)
 };
+

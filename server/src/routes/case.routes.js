@@ -22,3 +22,4 @@ router.get('/:caseId/status', getCaseStatusHandler);
 router.delete('/:caseId', optionalAuth, deleteCaseHandler);
 
 export default router;
+

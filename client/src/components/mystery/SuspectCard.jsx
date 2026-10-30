@@ -58,3 +58,4 @@ export const SuspectCard = ({ suspect, isSelected, onSelect }) => {
     </div>
   );
 };
+

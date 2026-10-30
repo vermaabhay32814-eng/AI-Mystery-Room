@@ -113,3 +113,4 @@ describe('Case Validation Service (SPEC.md Section 6.2 Step 5)', () => {
     expect(result.errors.some((e) => e.includes('requires at least 2 decisive'))).toBe(true);
   });
 });
+

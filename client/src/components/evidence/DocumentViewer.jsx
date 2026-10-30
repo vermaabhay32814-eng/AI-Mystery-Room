@@ -39,3 +39,4 @@ export const DocumentViewer = ({ content }) => {
     </div>
   );
 };
+

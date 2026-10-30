@@ -18,3 +18,4 @@ export const updateProgressSchema = z.object({
     )
     .optional()
 });
+

@@ -21,3 +21,4 @@ export const config = {
   caseGenerationLimitPerHour: parseInt(process.env.CASE_GENERATION_LIMIT_PER_HOUR || '10', 10),
   caseMaxScenarioLength: parseInt(process.env.CASE_MAX_SCENARIO_LENGTH || '2000', 10),
 };
+

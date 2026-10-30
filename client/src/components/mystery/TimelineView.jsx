@@ -66,3 +66,4 @@ export const TimelineView = ({ timeline = [], suspects = [], onSelectEvidenceByE
     </div>
   );
 };
+

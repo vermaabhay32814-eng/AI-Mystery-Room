@@ -60,3 +60,4 @@ npm run dev
 ## 📂 Project Architecture
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/API.md`](docs/API.md) for detailed architecture diagrams, database models, and API specifications.
+

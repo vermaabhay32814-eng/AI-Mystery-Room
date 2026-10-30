@@ -1,5 +1,7 @@
 // server/src/models/Case.js
 import mongoose from 'mongoose';
+import { isDbConnected } from '../config/db.js';
+import { inMemoryStore } from '../config/in-memory-db.js';
 
 const suspectSchema = new mongoose.Schema(
   {
@@ -81,7 +83,6 @@ const caseSchema = new mongoose.Schema(
     },
     errorMessage: { type: String },
 
-    // Player visible case data
     publicCase: {
       synopsis: { type: String },
       incident: { type: String },
@@ -96,7 +97,6 @@ const caseSchema = new mongoose.Schema(
       evidencePlanSummary: { type: String }
     },
 
-    // Hidden solution data - never sent to frontend before accusation
     privateSolution: {
       culpritSuspectId: { type: String, required: true },
       motive: { type: String, required: true },
@@ -126,11 +126,35 @@ const caseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Method to get public sanitized case data (stripping privateSolution)
 caseSchema.methods.toPublicJSON = function () {
   const caseObj = this.toObject();
   delete caseObj.privateSolution;
   return caseObj;
 };
 
-export const Case = mongoose.model('Case', caseSchema);
+const MongooseCase = mongoose.model('Case', caseSchema);
+
+export class Case {
+  constructor(data) {
+    if (isDbConnected()) {
+      return new MongooseCase(data);
+    }
+    return inMemoryStore.cases.create(data);
+  }
+
+  static find(filter) {
+    return isDbConnected() ? MongooseCase.find(filter) : inMemoryStore.cases.find(filter);
+  }
+
+  static findById(id) {
+    return isDbConnected() ? MongooseCase.findById(id) : inMemoryStore.cases.findById(id);
+  }
+
+  static countDocuments(filter) {
+    return isDbConnected() ? MongooseCase.countDocuments(filter) : inMemoryStore.cases.countDocuments(filter);
+  }
+
+  static findByIdAndDelete(id) {
+    return isDbConnected() ? MongooseCase.findByIdAndDelete(id) : inMemoryStore.cases.findByIdAndDelete(id);
+  }
+}

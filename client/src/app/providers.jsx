@@ -5,3 +5,4 @@ import { AuthProvider } from '../context/AuthContext.jsx';
 export const Providers = ({ children }) => {
   return <AuthProvider>{children}</AuthProvider>;
 };
+

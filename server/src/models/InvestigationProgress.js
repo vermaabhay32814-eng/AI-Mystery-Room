@@ -1,5 +1,7 @@
 // server/src/models/InvestigationProgress.js
 import mongoose from 'mongoose';
+import { isDbConnected } from '../config/db.js';
+import { inMemoryStore } from '../config/in-memory-db.js';
 
 const noteSchema = new mongoose.Schema(
   {
@@ -49,7 +51,23 @@ const investigationProgressSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Compound index to ensure 1 active investigation per user per case
 investigationProgressSchema.index({ caseId: 1, userId: 1 }, { unique: true });
 
-export const InvestigationProgress = mongoose.model('InvestigationProgress', investigationProgressSchema);
+const MongooseProgress = mongoose.model('InvestigationProgress', investigationProgressSchema);
+
+export class InvestigationProgress {
+  constructor(data) {
+    if (isDbConnected()) {
+      return new MongooseProgress(data);
+    }
+    return inMemoryStore.progress.create(data);
+  }
+
+  static findOne(predicate) {
+    return isDbConnected() ? MongooseProgress.findOne(predicate) : inMemoryStore.progress.findOne(predicate);
+  }
+
+  static deleteMany(filter) {
+    return isDbConnected() ? MongooseProgress.deleteMany(filter) : inMemoryStore.progress.deleteMany(filter);
+  }
+}

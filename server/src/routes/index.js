@@ -13,3 +13,4 @@ router.use('/cases/:caseId', investigationRoutes);
 router.use('/health', healthRoutes);
 
 export default router;
+

@@ -9,3 +9,4 @@ export const investigationService = {
   submitAccusation: (caseId, suspectId) => api.post(`/cases/${caseId}/accusation`, { suspectId }),
   getResult: (caseId) => api.get(`/cases/${caseId}/result`)
 };
+

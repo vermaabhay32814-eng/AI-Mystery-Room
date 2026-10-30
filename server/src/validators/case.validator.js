@@ -26,3 +26,4 @@ export const createCaseSchema = z.object({
     .max(150, 'Title cannot exceed 150 characters')
     .optional()
 });
+

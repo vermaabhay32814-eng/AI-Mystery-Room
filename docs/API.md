@@ -103,3 +103,4 @@ All API endpoints are prefixed with `/api/v1`.
 
 ### `GET /health`
 - **Response:** Status of server, uptime, and database connection state.
+

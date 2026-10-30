@@ -63,3 +63,4 @@ export const ChatTranscriptViewer = ({ content }) => {
     </div>
   );
 };
+

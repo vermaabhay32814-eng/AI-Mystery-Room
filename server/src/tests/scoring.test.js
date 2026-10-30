@@ -45,3 +45,4 @@ describe('Scoring Service (SPEC.md Section 9.3)', () => {
     expect(result.score).toBe(85);
   });
 });
+

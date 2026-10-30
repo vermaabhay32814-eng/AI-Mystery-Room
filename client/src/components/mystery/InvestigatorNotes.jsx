@@ -86,3 +86,4 @@ export const InvestigatorNotes = ({ notes = [], onSaveNote, onDeleteNote }) => {
     </div>
   );
 };
+

@@ -57,3 +57,4 @@ export const CCTVLogViewer = ({ content }) => {
     </div>
   );
 };
+

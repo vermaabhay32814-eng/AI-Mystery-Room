@@ -54,3 +54,4 @@ export const generateGeminiContent = async (prompt, systemInstruction = '') => {
     throw new Error(`Gemini API error: ${err.message}`);
   }
 };
+

@@ -74,3 +74,4 @@ export const EvidenceCard = ({ evidence, isOpened, isSelected, onClick }) => {
     </div>
   );
 };
+

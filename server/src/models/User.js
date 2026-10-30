@@ -1,6 +1,8 @@
 // server/src/models/User.js
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { isDbConnected } from '../config/db.js';
+import { inMemoryStore } from '../config/in-memory-db.js';
 
 const userSchema = new mongoose.Schema(
   {
@@ -50,4 +52,21 @@ userSchema.methods.toJSON = function () {
   return obj;
 };
 
-export const User = mongoose.model('User', userSchema);
+const MongooseUser = mongoose.model('User', userSchema);
+
+export class User {
+  constructor(data) {
+    if (isDbConnected()) {
+      return new MongooseUser(data);
+    }
+    return inMemoryStore.users.create(data);
+  }
+
+  static findOne(predicate) {
+    return isDbConnected() ? MongooseUser.findOne(predicate) : inMemoryStore.users.findOne(predicate);
+  }
+
+  static findById(id) {
+    return isDbConnected() ? MongooseUser.findById(id) : inMemoryStore.users.findById(id);
+  }
+}

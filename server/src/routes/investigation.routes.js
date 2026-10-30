@@ -20,3 +20,4 @@ router.post('/accusation', optionalAuth, submitAccusationHandler);
 router.get('/result', optionalAuth, getResultHandler);
 
 export default router;
+

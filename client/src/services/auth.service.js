@@ -7,3 +7,4 @@ export const authService = {
   logout: () => api.post('/auth/logout'),
   getCurrentUser: () => api.get('/auth/me')
 };
+

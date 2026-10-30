@@ -61,3 +61,4 @@ export const validateCaseData = ({ blueprint, evidenceList }) => {
     errors
   };
 };
+

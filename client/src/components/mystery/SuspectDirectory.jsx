@@ -99,3 +99,4 @@ export const SuspectDirectory = ({ suspects = [], selectedSuspectId, onSelectSus
     </div>
   );
 };
+

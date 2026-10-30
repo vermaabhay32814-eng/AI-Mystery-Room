@@ -17,7 +17,6 @@ describe('AI Mystery Room API Unit & Integration Tests', () => {
   describe('GET /api/v1/health (SPEC.md Section 17)', () => {
     it('reports health status and service connectivity', async () => {
       const res = await request(app).get('/api/v1/health');
-      // If DB is offline, returns 503 degraded per SPEC Section 17; if online, returns 200
       expect([200, 503]).toContain(res.status);
       expect(res.body.services).toBeDefined();
       expect(res.body.services.server).toBe('running');
@@ -71,9 +70,10 @@ describe('AI Mystery Room API Unit & Integration Tests', () => {
         password: rawPassword
       });
 
-      // Save pre-hook hashes password
-      await user.validate(); // Ensure schema validation passes
-      expect(user.email).toBe('lestrade@scotlandyard.gov');
+      await user.save();
+      expect(user.password).not.toBe(rawPassword);
+      const isMatch = await user.comparePassword(rawPassword);
+      expect(isMatch).toBe(true);
     });
 
     it('never includes password in JSON serialization', () => {

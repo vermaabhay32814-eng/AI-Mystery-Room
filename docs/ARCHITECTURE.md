@@ -34,3 +34,4 @@ Located in `server/src/services/`:
 - **Secret Solution Separation**: Public case payloads never include `privateSolution` (culprit identity, secret motives, decisive clue mappings). These are stripped at the serialization layer and only revealed via `GET /cases/:caseId/result` after a verified accusation is stored.
 - **Authentication**: JWT stored in HTTP-Only, SameSite, Secure cookies.
 - **Input Sanitization**: User prompt is strictly parameterized and treated as untrusted fiction material, preventing prompt injection.
+
